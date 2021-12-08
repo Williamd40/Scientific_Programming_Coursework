@@ -1,8 +1,10 @@
+#!/usr/bin/python
+
+## python3 Forest_Fire_Functioned.py 6 10
+
 import numpy as np
 import random
-from concurrent.futures import ProcessPoolExecutor
-import os
-import multiprocessing as mp
+import sys
 
 def GETTNG_EMPTY_STORAGE_ARRAY(STEP_NUMBER, INITIAL_ARRAY):
     ARRAY_LIST=[np.empty_like(INITIAL_ARRAY) for i in range(STEP_NUMBER)]
@@ -165,21 +167,18 @@ def UPDATE_CELL_TYPE(Previous_Forest):
     return New_Forest_SINGLE
 
 
-Initial_Forest_Array = RANDOM_GRID_GENERATION(6)
+
+Command_Line_Arguments = sys.argv[1:]
+Array_Size = int(Command_Line_Arguments[0])
+NUMBER_OF_STEPS = int(Command_Line_Arguments[1])
+
+Initial_Forest_Array = RANDOM_GRID_GENERATION(Array_Size)
 
 
 
-# Initial_Forest_Array = np.array([
-# ['T', 'E', 'E', 'T', 'E', 'T'],
-#  ['E', 'T', 'T', 'T', 'T', 'T'],
-#  ['E', 'E', 'E', 'T', 'E', 'T'],
-#  ['T', 'T', 'E', 'E', 'E', 'E'],
-#  ['T', 'E', 'E', 'T', 'E', 'T'],
-#  ['T', 'T', 'E', 'T', 'E', 'T']
-#  ])
 
 
-NUMBER_OF_STEPS = 3
+
 
 Empty_Array_List = GETTNG_EMPTY_STORAGE_ARRAY(STEP_NUMBER=NUMBER_OF_STEPS, INITIAL_ARRAY=Initial_Forest_Array)
 
@@ -190,11 +189,5 @@ def SIMULATE_FIRE(New_Forest, Step_Amount):
     return New_Forest
 
 
-New_Forest_simulated = SIMULATE_FIRE(Empty_Array_List, NUMBER_OF_STEPS)
-for i in range(len(New_Forest_simulated)):
-    print(" ")
-    print(New_Forest_simulated[i])
-    print(" ")
-
-
-
+New_Forest_Simulated = SIMULATE_FIRE(Empty_Array_List, NUMBER_OF_STEPS)
+np.savez_compressed("New_Forest_Simulation", state=New_Forest_Simulated)
