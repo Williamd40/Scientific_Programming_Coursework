@@ -1,10 +1,13 @@
 #!/usr/bin/python
 
-## python3 Forest_Fire_Functioned.py 6 10
-
 import numpy as np
 import random
 import sys
+from datetime import datetime 
+
+
+#############################################################################################################################################################################################
+
 
 def GETTNG_EMPTY_STORAGE_ARRAY(STEP_NUMBER, INITIAL_ARRAY):
     ARRAY_LIST=[np.empty_like(INITIAL_ARRAY) for i in range(STEP_NUMBER)]
@@ -168,10 +171,13 @@ def UPDATE_CELL_TYPE(Previous_Forest):
 
 
 
+## Taking command line arguments for the array dimensions
+## and the number of steps to perform
 Command_Line_Arguments = sys.argv[1:]
 Array_Size = int(Command_Line_Arguments[0])
 NUMBER_OF_STEPS = int(Command_Line_Arguments[1])
 
+## Generating the initial random grid of "T" and "E"
 Initial_Forest_Array = RANDOM_GRID_GENERATION(Array_Size)
 
 
@@ -179,7 +185,8 @@ Initial_Forest_Array = RANDOM_GRID_GENERATION(Array_Size)
 
 
 
-
+## Generating the list of empty arrays that is equal to the length of steps
+## I.E one array slot for each new array generated
 Empty_Array_List = GETTNG_EMPTY_STORAGE_ARRAY(STEP_NUMBER=NUMBER_OF_STEPS, INITIAL_ARRAY=Initial_Forest_Array)
 
 
@@ -189,5 +196,8 @@ def SIMULATE_FIRE(New_Forest, Step_Amount):
     return New_Forest
 
 
+Current_Time = datetime.now()
+Date = Current_Time.strftime("%d_%m_%Y__%H_%M_%S")
 New_Forest_Simulated = SIMULATE_FIRE(Empty_Array_List, NUMBER_OF_STEPS)
-np.savez_compressed("New_Forest_Simulation", state=New_Forest_Simulated)
+np.savez_compressed(f"New_Forest_Simulation_{Date}", state=New_Forest_Simulated)
+

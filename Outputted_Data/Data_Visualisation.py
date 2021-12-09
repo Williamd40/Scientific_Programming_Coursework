@@ -8,4 +8,9 @@ os.chdir(CurrentDirectory)
 with np.load("New_Forest_Simulation.npz") as Forest_Sim:
     New_Forest_Sim = Forest_Sim["state"]
 
-print(New_Forest_Sim)
+
+import pandas as pd
+
+summary = pd.DataFrame({"number_infected": number_infected})
+summary.index.name = "Time step"
+summary.plot()
