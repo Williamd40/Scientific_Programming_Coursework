@@ -4,7 +4,7 @@ Purple='\033[0;35m'
 No_Colour='\033[0m'
 Green='\033[0;32m'
 
-printf "${Red}##########################################\n"
+printf "${Purple}##########################################\n"
 printf "##	Forest Fire Simulation          ##\n" 
 printf "##########################################\n"
 printf "##	Data Analysis run automatically	    ##\n" | column -t
