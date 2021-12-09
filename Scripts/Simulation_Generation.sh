@@ -1,8 +1,5 @@
 #!/usr/bin/bash
 
-
-
-
 ## Saving the various directory paths for later reference
 SCRIPT_cwd="$(pwd)"
 cd ..
@@ -24,24 +21,24 @@ STEP_NUM=$2
 if [ -z "$ARRAY_SIZE" ]
 then
     ARRAY_SIZE=10
-    echo "Array size set to default: "$ARRAY_SIZE
+    printf "\nArray size set to default: "$ARRAY_SIZE 
 else
-    echo "Array size set to user designated value: "$ARRAY_SIZE
+    printf "\nArray size set to user designated value: "$ARRAY_SIZE
 fi
 
 if [ -z "$STEP_NUM" ]
 then
     STEP_NUM=5
 
-    echo "Step number set to default: "$STEP_NUM
+    printf "\nStep number set to default: "$STEP_NUM
 else
-    echo "Step number set to user designated value: "$STEP_NUM
+    printf "\nStep number set to user designated value: "$STEP_NUM
 fi
 
 ## Running the simulation and telling the user what is happening
-printf "Now running simulation... \n"
+printf "\nNow running simulation... \n"
 
-python3 Forest_Fire_Functioned.py $ARRAY_SIZE $STEP_NUM
+python3 Forest_Fire_Functioned_NUMBERS.py $ARRAY_SIZE $STEP_NUM
 
 printf "Done \n"
 
@@ -60,9 +57,10 @@ File_Name=${File_Name_Full_BROKEN[1]}
 IFS='.' read -ra DIR_NAME_TO_MAKE <<< ${File_Name_Full_BROKEN[1]}
 DIR_NAME_TO_MAKE=${DIR_NAME_TO_MAKE[0]}
 
-mkdir -p "$WHOLE_REPO_cwd/Outputted_Data/$DIR_NAME_TO_MAKE/"{NPZ_File,Graphs}
+mkdir -p "$WHOLE_REPO_cwd/Outputted_Data/$DIR_NAME_TO_MAKE/"{NPZ_File,Graphs,Dataframes}
 
 mv $File_Name "$WHOLE_REPO_cwd/Outputted_Data/$DIR_NAME_TO_MAKE/NPZ_File"
+
 
 cd "$WHOLE_REPO_cwd/Outputted_Data"
 
