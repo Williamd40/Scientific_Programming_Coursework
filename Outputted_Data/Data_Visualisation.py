@@ -1,15 +1,19 @@
+#!/usr/bin/python
+
 import numpy as np
 import os
 import pandas as pd
-import seaborn as sns
 import matplotlib.pyplot as plt
+import sys
 
-
+Command_Line_Arguments = sys.argv[1:]
+File_Name = str(Command_Line_Arguments[0])
 
 # Setting current working directory to script location
 CurrentDirectory = os.path.dirname(__file__)
-os.chdir(CurrentDirectory)
-for file in os.listdir(CurrentDirectory):
+
+os.chdir(File_Name)
+for file in os.listdir(File_Name):
     if file.endswith("npz"):
         New_Forest_Simulation = file
 
@@ -46,17 +50,20 @@ Simulation_And_Percentage_Per_Variable_Dataframe = pd.DataFrame({'Simulation Num
  
 OrignalFileName = (os.path.basename(file)).split(".")[0]
 
+Simulation_And_Percentage_Per_Variable_Dataframe.to_csv(f"Percentages_For_{OrignalFileName}.csv",index=False)
 
-plt.plot(Simulation_Number, Total_Cells_Per_Simulation, label = "Total Cells In Simulation")
-plt.plot(Simulation_Number, Empty_Cells_Log_Percentage, label = "Total Empty Cells In Simulation")
-plt.plot(Simulation_Number, Trees_Log_Percentage, label = "Total Trees In Simulation")
-plt.plot(Simulation_Number, Trees_On_Fire_Log_Percentage, label = "Total Trees On Fire In Simulation")
+plt.figure(facecolor='grey')
+ax = plt.axes()
+ax.set_facecolor("black")
+plt.plot(Simulation_Number, Empty_Cells_Log_Percentage, label = "Total Empty Cells In Simulation", linewidth=0.5, color='pink')
+plt.plot(Simulation_Number, Trees_Log_Percentage, label = "Total Trees In Simulation", linewidth=0.5, color='cyan')
+plt.plot(Simulation_Number, Trees_On_Fire_Log_Percentage, label = "Total Trees On Fire In Simulation", linewidth=0.5, color='violet')
 plt.xlabel('Simulation Number')
-# Set the y axis label of the current axis.
-plt.ylabel('Percentage')
-# Set a title of the current axes.
-plt.title('Two or more lines on same plot with suitable legends ')
-# show a legend on the plot
-plt.legend(loc='center left', bbox_to_anchor=(1, 0.5))
-# Display a figure.
-plt.show()
+plt.ylabel('Percentage (%)')
+plt.title('How the percentage of each cell type changes at each simulation.')
+legend = plt.legend(loc='center left', bbox_to_anchor=(1, 0.5), prop={"size":8})
+plt.setp(legend.get_texts(), color='w')
+frame = legend.get_frame()
+frame.set_facecolor('black')
+frame.set_edgecolor('black')
+plt.savefig(f'Graph_Of_Percentages_{OrignalFileName}', dpi=1200,bbox_inches="tight", pad_inches=0.2,backend=None,)
