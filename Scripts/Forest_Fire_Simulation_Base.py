@@ -200,7 +200,7 @@ def SIMULATE_FIRE(New_Forest, Step_Amount):
 Current_Time = datetime.now()
 Date = Current_Time.strftime("%d_%m_%Y__%H_%M_%S")
 New_Forest_Simulated = SIMULATE_FIRE(Empty_Array_List, NUMBER_OF_STEPS)
-np.savez_compressed(f"New_Forest_Simulation_{Date}", state=New_Forest_Simulated)
+np.savez_compressed(f"New_Forest_Simulation", state=New_Forest_Simulated)
 
 # for I in range(len(New_Forest_Simulated)):
 #     print(New_Forest_Simulated[I])

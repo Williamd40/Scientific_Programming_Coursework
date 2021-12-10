@@ -48,8 +48,7 @@ Trees_On_Fire_Log_Percentage = [(Result) for Result in map(lambda Total_Cell_Lis
 Simulation_And_Percentage_Per_Variable_Dataframe = pd.DataFrame({'Simulation Number':Simulation_Number,'Total Cells Percentage':Total_Cells_Per_Simulation,'Total Empty Cells Percentage':Empty_Cells_Log_Percentage,'Total Trees Percentage':Trees_Log_Percentage,'Total Trees On Fire Percentage':Trees_On_Fire_Log_Percentage})
 
  
-OrignalFileName = (os.path.basename(file)).split(".")[0]
-
+OrignalFileName = New_Forest_Simulation.split(".")[0]
 Simulation_And_Percentage_Per_Variable_Dataframe.to_csv(f"Percentages_For_{OrignalFileName}.csv",index=False)
 
 plt.figure(facecolor='grey')
