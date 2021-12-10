@@ -99,8 +99,6 @@ do
 
     mv $File_Name "$WHOLE_REPO_cwd/Outputted_Data"
 
-    #/$DIR_NAME_TO_MAKE/NPZ_File
-
     cd "$WHOLE_REPO_cwd/Outputted_Data"
 
     printf "Runing data visualisation \n"
