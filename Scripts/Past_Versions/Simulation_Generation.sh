@@ -20,14 +20,6 @@ printf "##########################################\n${No_Colour}"
 
 
 
-Join() {
-  local IFS="$1"
-  shift
-  echo "$*"
-}
-
-
-
 ## Saving the various directory paths for later reference
 SCRIPT_cwd="$(pwd)"
 cd ..
@@ -64,58 +56,48 @@ else
 fi
 
 ## Running the simulation and telling the user what is happening
-printf "\n${No_Colour}Now running simulations... \n"
+printf "\n${No_Colour}Now running simulation... \n"
 
 python3 Forest_Fire_Simulation_Base.py $ARRAY_SIZE $STEP_NUM
 
-python3 Forest_Fire_Simulation_Additional.py $ARRAY_SIZE $STEP_NUM
 
 printf "Done \n"
 
+## Moving the outputted .npz file to a seperate folder
+## Folder created is based on 
+printf "Moving .npz file generated... \n"
 
-## Getting the exact date and time to create a parent directory
-## to store the outputs of both simulations
-IFS='.' read -ra Date_Broken <<< "$(date)"
-Date=$(Join "_" $Date_Broken)
-IFS=':' read -ra Date_Broken <<< "$Date"
-Date=$(Join "_" ${Date_Broken[@]})
+File_Name_Full=$(find . -type f -name *.npz)
 
+IFS='/' read -ra File_Name_Full_BROKEN <<< "$File_Name_Full"
 
-for file in *.npz
-do
-    cd $SCRIPT_cwd
-    ## Moving the outputted .npz file to a seperate folder
-    ## Folder created is based on 
-    printf "Moving $file... \n"
-
-    File_Name=$file
-
-    IFS='.' read -ra File_Name_Full_BROKEN <<< "$file"
-
-    DIR_NAME_TO_MAKE=${File_Name_Full_BROKEN[0]}
+File_Name=${File_Name_Full_BROKEN[1]}
 
 
-    mkdir -p "$WHOLE_REPO_cwd/Outputted_Data/Simulation_$Date/$DIR_NAME_TO_MAKE/"{NPZ_File,Graphs,Dataframes}
 
-    mv $File_Name "$WHOLE_REPO_cwd/Outputted_Data"
+IFS='.' read -ra DIR_NAME_TO_MAKE <<< ${File_Name_Full_BROKEN[1]}
+DIR_NAME_TO_MAKE=${DIR_NAME_TO_MAKE[0]}
 
-    #/$DIR_NAME_TO_MAKE/NPZ_File
+mkdir -p "$WHOLE_REPO_cwd/Outputted_Data/$DIR_NAME_TO_MAKE/"{NPZ_File,Graphs,Dataframes}
 
-    cd "$WHOLE_REPO_cwd/Outputted_Data"
+mv $File_Name "$WHOLE_REPO_cwd/Outputted_Data"
 
-    printf "Runing data visualisation \n"
-    python3 Data_Visualisation.py "$WHOLE_REPO_cwd/Outputted_Data"
+#/$DIR_NAME_TO_MAKE/NPZ_File
 
-    printf "Visulaisation complete\n"
-    printf "Moving files...\n"
+cd "$WHOLE_REPO_cwd/Outputted_Data"
+
+printf "Ruining data visualisation \n"
+python3 Data_Visualisation.py "$WHOLE_REPO_cwd/Outputted_Data"
+
+printf "Visulaisation complete\n"
+printf "Moving files...\n"
 
 
-    mv $File_Name "Simulation_$Date/$DIR_NAME_TO_MAKE/NPZ_File"
+mv $File_Name "$DIR_NAME_TO_MAKE/NPZ_File"
 
-    mv Graph* "Simulation_$Date/$DIR_NAME_TO_MAKE/Graphs"
+mv Graph* "$DIR_NAME_TO_MAKE/Graphs"
 
-    mv Percentages_For_* "Simulation_$Date/$DIR_NAME_TO_MAKE/Dataframes"
-done
+mv Percentages_For_* "$DIR_NAME_TO_MAKE/Dataframes"
 
 printf "Done \n"
 printf "\n"
