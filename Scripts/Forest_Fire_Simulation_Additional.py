@@ -1,5 +1,8 @@
 #!/usr/bin/python
 
+## The above line sets the environment when this script is run in bash
+
+## Importing required packages
 import numpy as np
 import random
 import sys
@@ -10,8 +13,34 @@ from datetime import datetime
 
 
 def GETTNG_EMPTY_STORAGE_ARRAY(STEP_NUMBER, INITIAL_ARRAY):
+    """
+    This function generates an empty storage array, to store the array generated at each time step.
+
+    Args:
+        STEP_NUMBER: The amount of time steps that will be performed, and therefore the amount of storage arrays needed.
+        INITIAL_ARRAY: The initial time step of the simulation, thus time step zero/how the simuation starts.
+        
+
+    Returns:
+        ARRAY_LIST: A storage array with the first entry being how the simulation starts. The length is equal to the total time steps.
+
+    Examples:
+        >>> STEP_NUMBER=2, INITIAL_ARRAY = [1,0
+                                            0,1]
+            
+        >[1,0
+          0,1],
+          [,],
+          [,]
+    """
+    ## Generating an empty array, that is the same size as the INITIAL_ARRAY
+    ## This uses a list comprehension for every time step in the range of STEP_NUMBER, thus iterating once per time step requested
     ARRAY_LIST=[np.empty_like(INITIAL_ARRAY) for i in range(STEP_NUMBER)]
+
+    ## Setting the initial array to equal INITIAL_ARRAY 
     ARRAY_LIST[0] = INITIAL_ARRAY
+
+    ## Returning the new array generated
     return ARRAY_LIST
 
 
@@ -19,10 +48,35 @@ def GETTNG_EMPTY_STORAGE_ARRAY(STEP_NUMBER, INITIAL_ARRAY):
 
 
 def RANDOM_GRID_GENERATION(N):
+    """
+    This function generates an array that is random filled with 0 and 1, thus has a random selection of cells that are either 0=Empty, or 1=Tree
+
+    Args:
+        N: The side length of the array, the array will have uniform side lengths.
+        
+
+    Returns:
+        Generated_Array:  An array with side lengths N, containing 0s and 1s.
+
+    Examples:
+        >>> N=2
+            
+        >[1,0
+          0,1]
+    """
+    ## Generating an array full of 0s with rows N and columns N, with the datatype of 'uint8'
     Generated_Array = np.zeros((N, N), dtype="uint8")
+
+    ## Now iterating over each now of the array
     for i in range(len(Generated_Array)):
+
+        ## Now iterating over each entry in the actual array, using a nested for loop
         for j in range(len(Generated_Array[i])):
+
+            ## Making the individual array entry be either a 0 or a 1 randomly 
             Generated_Array[i][j] = random.choice([0,1],)
+
+    ## Returning the ranomdly generated array
     return Generated_Array
 
 
@@ -30,6 +84,27 @@ def RANDOM_GRID_GENERATION(N):
 
 
 def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
+    """
+    This function generates the new row per time step, per sequence. Using a set of rules and random chances.
+
+    Args:
+        Row_To_Analyse: The current row being analysed
+        Row_Above_List: The row above the current row being analysed
+        Row_Below_List: The row below the current row being analysed
+        
+
+    Returns:
+        New_Row: The newly generated row, with the correct new charcters.
+
+    Examples:
+        >>> Row_Above_List = [1,2,2]
+            Row_To_Analyse = [0,0,1]
+            Row_Below_List = [2,2,1]
+
+            
+        >[1,0,2]
+    """
+
     ## Generating the new row to add to the new array later
     New_Row = np.zeros_like(Row_To_Analyse)
 
@@ -111,9 +186,34 @@ def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
 
 #############################################################################################################################################################################################
 
+## CHANGE VARIABLE NAMES
 
 def GET_NEW_ROW(Previous_Forest,Previous_Forest_List_Rows,New_Forest_SINGLE):
+    """
+    This function gets the row being analysed, passes it to GET_NEW_CHAR and returns the new row.
 
+    Args:
+        Previous_Forest: The whole array of rows for the previous time step.
+        Previous_Forest_List_Rows: The rows from the previous time step.
+        New_Forest_SINGLE: An empty array that gets filled with  the new rows
+        
+
+    Returns:
+        New_Forest_SINGLE: The newly generated array, with new rows.
+
+    Examples:
+        >>> New_Forest_SINGLE:[[]
+                               []]
+        Previous_Forest_List_Rows: [[1,0]
+                                    [1,2]]
+        Previous_Forest_List_Rows: [[1,0],[2,1]]
+
+            
+        >[1,1
+          2,0]
+    """
+
+    ## Iterating over every row in the Previous_Forest_List_Rows value
     for Row_Number in range(len(Previous_Forest_List_Rows)):
 
 
@@ -138,6 +238,8 @@ def GET_NEW_ROW(Previous_Forest,Previous_Forest_List_Rows,New_Forest_SINGLE):
 
         ## Getting the actual row
         Actual_Row =  Previous_Forest[Row_Number]
+
+        ## MAYBE SEE IF WE CAN REMOVE THE NEED FOR STORAGE VALUES
 
         ## Converting the rows to lists, to make them iterable
         Actual_Row_Above_As_List = Row_Above.tolist()
@@ -165,6 +267,17 @@ def UPDATE_CELL_TYPE(Previous_Forest):
 
     return New_Forest_SINGLE
 
+
+#############################################################################################################################################################################################
+
+
+def SIMULATE_FIRE(New_Forest, Step_Amount):
+    for Iteration in range(1, Step_Amount):
+        New_Forest[Iteration] = UPDATE_CELL_TYPE(New_Forest[Iteration-1])
+    return New_Forest
+
+
+#############################################################################################################################################################################################
 ## Taking command line arguments for the array dimensions
 ## and the number of steps to perform
 Command_Line_Arguments = sys.argv[1:]
@@ -184,10 +297,6 @@ Initial_Forest_Array = RANDOM_GRID_GENERATION(Array_Size)
 Empty_Array_List = GETTNG_EMPTY_STORAGE_ARRAY(STEP_NUMBER=NUMBER_OF_STEPS, INITIAL_ARRAY=Initial_Forest_Array)
 
 
-def SIMULATE_FIRE(New_Forest, Step_Amount):
-    for Iteration in range(1, Step_Amount):
-        New_Forest[Iteration] = UPDATE_CELL_TYPE(New_Forest[Iteration-1])
-    return New_Forest
 
 
 Current_Time = datetime.now()
