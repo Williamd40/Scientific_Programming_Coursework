@@ -10,7 +10,6 @@ for file in os.listdir(CurrentDirectory):
 with np.load(New_Forest_Simulation) as f:
     Cell_Types = f["state"]
 
-# print(Cell_Types[0,0])
 
 #####################
 import matplotlib.pyplot as plt
