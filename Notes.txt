@@ -1,0 +1,7 @@
+Things for Set_Up.py:
+
+sudo apt-get update -y
+sudo apt install ffmpeg
+sudo apt install python3-pip
+sudo apt install python3-matplotlib
+pip3 install ipython

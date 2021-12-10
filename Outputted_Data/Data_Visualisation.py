@@ -5,6 +5,11 @@ import os
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys
+from matplotlib.colors import ListedColormap
+from matplotlib.animation import FuncAnimation
+import matplotlib.animation as animation
+
+
 
 Command_Line_Arguments = sys.argv[1:]
 File_Name = str(Command_Line_Arguments[0])
@@ -66,3 +71,54 @@ frame = legend.get_frame()
 frame.set_facecolor('black')
 frame.set_edgecolor('black')
 plt.savefig(f'Graph_Of_Percentages_{OrignalFileName}', dpi=1200,bbox_inches="tight", pad_inches=0.2,backend=None,)
+
+
+
+
+
+#####################
+# import numpy as np
+# import os
+# import pandas as pd
+# import matplotlib.pyplot as plt
+# import sys
+# from matplotlib.colors import ListedColormap
+# from matplotlib.animation import FuncAnimation
+# from IPython.display import HTML
+# import matplotlib.animation as animation
+
+for file in os.listdir():
+    if file.endswith("npz"):
+        New_Forest_Simulation = file
+
+with np.load(New_Forest_Simulation) as Forest_Sim:
+    New_Forest_Sim = Forest_Sim["state"]
+
+# Set up the initial figure and axes
+fig, ax = plt.subplots(constrained_layout=True)
+ax.axis("off")
+cmap = ListedColormap(["#964B00", "#006400","#FF0000"])
+# Plot the initial grid
+array_plot = ax.imshow(
+    New_Forest_Sim[0],  # Make our data 2-D
+    vmin=New_Forest_Sim.min(),
+    vmax=New_Forest_Sim.max(),
+    animated=True,
+    cmap=cmap
+)
+#####################
+def animate(i):
+    array_plot.set_array(New_Forest_Sim[i])
+    return [array_plot]
+
+
+
+anim = FuncAnimation(fig, animate, frames=len(New_Forest_Sim), interval=20)
+
+
+Writer = animation.writers['ffmpeg']
+writer = Writer(fps=5, metadata=dict(artist='Me'), bitrate=2000)
+anim.save(f'Animation_Of_{OrignalFileName}.mp4', writer=writer)
+
+
+#####################

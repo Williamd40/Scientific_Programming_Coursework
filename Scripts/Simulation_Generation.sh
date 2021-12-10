@@ -4,22 +4,68 @@ Purple='\033[0;35m'
 No_Colour='\033[0m'
 Green='\033[0;32m'
 
-printf "${Purple}##########################################\n"
-printf "##	Forest Fire Simulation          ##\n" 
-printf "##########################################\n"
-printf "##	Data Analysis run automatically	    ##\n" | column -t
-printf "##########################################\n"
-printf "##    Don't    forget    you    can     ##\n" 
-printf "##########################################\n"
-printf "##  specify   the   array  parameter    ##\n" 
-printf "##########################################\n"
-printf "##  lengths,    and     the     time    ##\n" 
-printf "##########################################\n"
-printf "##          step         count!         ##\n" 
-printf "##########################################\n${No_Colour}"
 
 
 
+                                                                                                                                                                                                                                                                                                                                                                   
+printf "${Red}           
+
+                                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                      
+FFFFFFFFFFFFFFFFFFFFFF                                                                                tttt               FFFFFFFFFFFFFFFFFFFFFF  iiii                                                 SSSSSSSSSSSSSSS   iiii                          
+F::::::::::::::::::::F                                                                             ttt:::t               F::::::::::::::::::::F i::::i                                              SS:::::::::::::::S i::::i                         
+F::::::::::::::::::::F                                                                             t:::::t               F::::::::::::::::::::F  iiii                                              S:::::SSSSSS::::::S  iiii                          
+FF::::::FFFFFFFFF::::F                                                                             t:::::t               FF::::::FFFFFFFFF::::F                                                    S:::::S     SSSSSSS                                
+  F:::::F       FFFFFFooooooooooo   rrrrr   rrrrrrrrr       eeeeeeeeeeee        ssssssssss   ttttttt:::::ttttttt           F:::::F       FFFFFFiiiiiiirrrrr   rrrrrrrrr       eeeeeeeeeeee         S:::::S            iiiiiii    mmmmmmm    mmmmmmm   
+  F:::::F           oo:::::::::::oo r::::rrr:::::::::r    ee::::::::::::ee    ss::::::::::s  t:::::::::::::::::t           F:::::F             i:::::ir::::rrr:::::::::r    ee::::::::::::ee       S:::::S            i:::::i  mm:::::::m  m:::::::mm 
+  F::::::FFFFFFFFFFo:::::::::::::::or:::::::::::::::::r  e::::::eeeee:::::eess:::::::::::::s t:::::::::::::::::t           F::::::FFFFFFFFFF    i::::ir:::::::::::::::::r  e::::::eeeee:::::ee      S::::SSSS          i::::i m::::::::::mm::::::::::m
+  F:::::::::::::::Fo:::::ooooo:::::orr::::::rrrrr::::::re::::::e     e:::::es::::::ssss:::::stttttt:::::::tttttt           F:::::::::::::::F    i::::irr::::::rrrrr::::::re::::::e     e:::::e       SS::::::SSSSS     i::::i m::::::::::::::::::::::m
+  F:::::::::::::::Fo::::o     o::::o r:::::r     r:::::re:::::::eeeee::::::e s:::::s  ssssss       t:::::t                 F:::::::::::::::F    i::::i r:::::r     r:::::re:::::::eeeee::::::e         SSS::::::::SS   i::::i m:::::mmm::::::mmm:::::m
+  F::::::FFFFFFFFFFo::::o     o::::o r:::::r     rrrrrrre:::::::::::::::::e    s::::::s            t:::::t                 F::::::FFFFFFFFFF    i::::i r:::::r     rrrrrrre:::::::::::::::::e             SSSSSS::::S  i::::i m::::m   m::::m   m::::m
+  F:::::F          o::::o     o::::o r:::::r            e::::::eeeeeeeeeee        s::::::s         t:::::t                 F:::::F              i::::i r:::::r            e::::::eeeeeeeeeee                   S:::::S i::::i m::::m   m::::m   m::::m
+  F:::::F          o::::o     o::::o r:::::r            e:::::::e           ssssss   s:::::s       t:::::t    tttttt       F:::::F              i::::i r:::::r            e:::::::e                            S:::::S i::::i m::::m   m::::m   m::::m
+FF:::::::FF        o:::::ooooo:::::o r:::::r            e::::::::e          s:::::ssss::::::s      t::::::tttt:::::t     FF:::::::FF           i::::::ir:::::r            e::::::::e               SSSSSSS     S:::::Si::::::im::::m   m::::m   m::::m
+F::::::::FF        o:::::::::::::::o r:::::r             e::::::::eeeeeeee  s::::::::::::::s       tt::::::::::::::t     F::::::::FF           i::::::ir:::::r             e::::::::eeeeeeee       S::::::SSSSSS:::::Si::::::im::::m   m::::m   m::::m
+F::::::::FF         oo:::::::::::oo  r:::::r              ee:::::::::::::e   s:::::::::::ss          tt:::::::::::tt     F::::::::FF           i::::::ir:::::r              ee:::::::::::::e       S:::::::::::::::SS i::::::im::::m   m::::m   m::::m
+FFFFFFFFFFF           ooooooooooo    rrrrrrr                eeeeeeeeeeeeee    sssssssssss              ttttttttttt       FFFFFFFFFFF           iiiiiiiirrrrrrr                eeeeeeeeeeeeee        SSSSSSSSSSSSSSS   iiiiiiiimmmmmm   mmmmmm   mmmmmm
+                                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                      
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+Data Analysis will be run automatically.
+
+Don't forget you can specify the array parameter lengths, and the time step count! Try:
+'bash Simulation_Generation.sh 50 1000' to generate arrays which are 50*50, and where each simulation has 1000 time steps
+The generic command is:
+'bash Simulation_Generation.sh <Array_Size> <Time_Steps>'
+
+
+This script needs to following packages installed into ubuntu to run properly:
+    > ffmpeg
+    > pip to install ipython
+    > matplotlib
+    > numpy
+    > seaborn
+    > pandas
+    > sys
+    > random
+
+When run correctly you will see one created parent dirctory per simulation pair.
+Within this directory there will then be two sub-directories, one per simulation:
+    > One simulation with the added effect 'Rain'
+    > One without this effect
+
+Then, within each of these directories, a further four directories will be found:
+    > 'Animation' will hold an mp4 file of the simulation in action
+    > 'Dataframes' will contain the percentage of each cell type, at each time step
+    > 'Graphs' will contain a graph showing the results of the generated dataframe
+    > 'NPZ_File' will contain the generated .npz from each simulation
+${No_Colour}"                                                                                                                                                                                                                                                                                                                                                        
+                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                   
+                                                                                                                                                                                                                                                                                                                                                                   
 Join() {
   local IFS="$1"
   shift
@@ -95,17 +141,18 @@ do
     DIR_NAME_TO_MAKE=${File_Name_Full_BROKEN[0]}
 
 
-    mkdir -p "$WHOLE_REPO_cwd/Outputted_Data/Simulation_$Date/$DIR_NAME_TO_MAKE/"{NPZ_File,Graphs,Dataframes}
+    mkdir -p "$WHOLE_REPO_cwd/Outputted_Data/Simulation_$Date/$DIR_NAME_TO_MAKE/"{NPZ_File,Graphs,Dataframes,Animation}
 
     mv $File_Name "$WHOLE_REPO_cwd/Outputted_Data"
 
     cd "$WHOLE_REPO_cwd/Outputted_Data"
 
-    printf "Runing data visualisation \n"
-    python3 Data_Visualisation.py "$WHOLE_REPO_cwd/Outputted_Data"
+    printf "Running data visualisation \n"
 
-    printf "Visulaisation complete\n"
-    printf "Moving files...\n"
+    python3 Data_Visualisation.py "$WHOLE_REPO_cwd/Outputted_Data" 2>/dev/null
+
+    printf "Visualisation complete
+Moving files...\n"
 
 
     mv $File_Name "Simulation_$Date/$DIR_NAME_TO_MAKE/NPZ_File"
@@ -113,13 +160,10 @@ do
     mv Graph* "Simulation_$Date/$DIR_NAME_TO_MAKE/Graphs"
 
     mv Percentages_For_* "Simulation_$Date/$DIR_NAME_TO_MAKE/Dataframes"
+
+    mv Animation* "Simulation_$Date/$DIR_NAME_TO_MAKE/Animation"
 done
 
-printf "Done \n"
-printf "\n"
-printf "${Green}Three output directories have been created\n"
-printf "One contains the .npz file generated from the original simulation\n"
-printf "Another contains the graph generated from analysing how the \npercentages of each cell type change over time\n"
-printf "The final directory contains the data used to plot the graph.\n"
-
-printf \n
+printf "${Green}All done!
+${No_Colour}Three output directories have been created"
+echo
