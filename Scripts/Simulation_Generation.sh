@@ -29,8 +29,7 @@ F::::::::FF        o:::::::::::::::o r:::::r             e::::::::eeeeeeee  s:::
 F::::::::FF         oo:::::::::::oo  r:::::r              ee:::::::::::::e   s:::::::::::ss          tt:::::::::::tt     F::::::::FF           i::::::ir:::::r              ee:::::::::::::e       S:::::::::::::::SS i::::::im::::m   m::::m   m::::m
 FFFFFFFFFFF           ooooooooooo    rrrrrrr                eeeeeeeeeeeeee    sssssssssss              ttttttttttt       FFFFFFFFFFF           iiiiiiiirrrrrrr                eeeeeeeeeeeeee        SSSSSSSSSSSSSSS   iiiiiiiimmmmmm   mmmmmm   mmmmmm
                                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
 Data Analysis will be run automatically.
 
 Don't forget you can specify the array parameter lengths, and the time step count! Try:
@@ -38,6 +37,9 @@ Don't forget you can specify the array parameter lengths, and the time step coun
 The generic command is:
 'bash Simulation_Generation.sh <Array_Size> <Time_Steps>'
 
+If no user inputs are found, the simulation will default to:
+ARRAY_SIZE=50
+STEP_NUM=1000
 
 This script needs to following packages installed into ubuntu to run properly:
     > ffmpeg
@@ -59,6 +61,11 @@ Then, within each of these directories, a further four directories will be found
     > 'Dataframes' will contain the percentage of each cell type, at each time step
     > 'Graphs' will contain a graph showing the results of the generated dataframe
     > 'NPZ_File' will contain the generated .npz from each simulation
+
+
+Please note: two simulations run with the same array size, and step number will never be the same
+This simulation randomly generates the initial array, and then further random factors will influence the 
+outcome of each time step. In theory, two simulations will therefore never be the same!
 ${No_Colour}"                                                                                                                                                                                                                                                                                                                                                        
                                                                                                                                                                                                                                                                                                                                                                    
                                                                                                                                                                                                                                                                                                                                                                    
@@ -94,7 +101,7 @@ STEP_NUM=$2
 
 if [ -z "$ARRAY_SIZE" ]
 then
-    ARRAY_SIZE=10
+    ARRAY_SIZE=50
     printf "\nArray size set to default: "$ARRAY_SIZE 
 else
     printf "\nArray size set to user designated value: "$ARRAY_SIZE
@@ -102,7 +109,7 @@ fi
 
 if [ -z "$STEP_NUM" ]
 then
-    STEP_NUM=5
+    STEP_NUM=1000
 
     printf "\nStep number set to default: "$STEP_NUM
 else
