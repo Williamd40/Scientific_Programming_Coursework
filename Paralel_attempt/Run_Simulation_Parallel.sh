@@ -92,92 +92,60 @@ WHOLE_REPO_cwd="$(pwd)"
 ## sets the cd to the working directory of the bash script
 cd $SCRIPT_cwd
 
-## Taking the array size and amount of steps from the cmd line
-ARRAY_SIZE=$1
-STEP_NUM=$2
+Data_Analysis=$SCRIPT_cwd/Data_Visualisation.py
 
-## Testing to check if the user specified requirements for
-## the array size and step amount
+echo $Data_Analysis
 
-## If nothing was entered then the program will
-## default to these default values
-## This is achieved by seeing if the user inputted any additional arguments into the command line,
-## as if they did then the variables of ARRAY_SIZE and STEP_NUM will no longer be empty
-if [ -z "$ARRAY_SIZE" ]
-then
-    ARRAY_SIZE=50
-    printf "\nArray size set to default: "$ARRAY_SIZE 
-else
-    printf "\nArray size set to user designated value: "$ARRAY_SIZE
-fi
+# ## Taking the array size and amount of steps from the cmd line
+# ARRAY_SIZE=$1
+# STEP_NUM=$2
 
-if [ -z "$STEP_NUM" ]
-then
-    STEP_NUM=1000
+# ## Testing to check if the user specified requirements for
+# ## the array size and step amount
 
-    printf "\nStep number set to default: "$STEP_NUM
-else
-    printf "\nStep number set to user designated value: "$STEP_NUM
-fi
+# ## If nothing was entered then the program will
+# ## default to these default values
+# ## This is achieved by seeing if the user inputted any additional arguments into the command line,
+# ## as if they did then the variables of ARRAY_SIZE and STEP_NUM will no longer be empty
+# if [ -z "$ARRAY_SIZE" ]
+# then
+#     ARRAY_SIZE=50
+#     printf "\nArray size set to default: "$ARRAY_SIZE 
+# else
+#     printf "\nArray size set to user designated value: "$ARRAY_SIZE
+# fi
 
-## Running the simulation and telling the user what is happening
-printf "\n${No_Colour}Now running simulations... \n"
+# if [ -z "$STEP_NUM" ]
+# then
+#     STEP_NUM=1000
 
-python3 Forest_Fire_Simulation_Base.py $ARRAY_SIZE $STEP_NUM & python3 Forest_Fire_Simulation_Additional.py $ARRAY_SIZE $STEP_NUM
+#     printf "\nStep number set to default: "$STEP_NUM
+# else
+#     printf "\nStep number set to user designated value: "$STEP_NUM
+# fi
 
-printf "Done \n"
+# ## Running the simulation and telling the user what is happening
+# printf "\n${No_Colour}Now running simulations... \n"
 
+# python3 Forest_Fire_Simulation_Base.py $ARRAY_SIZE $STEP_NUM & python3 Forest_Fire_Simulation_Additional.py $ARRAY_SIZE $STEP_NUM
 
-## Getting the exact date and time to create a parent directory
-## to store the outputs of both simulations
-IFS='.' read -ra Date_Broken <<< "$(date)"
-Date=$(Join "_" $Date_Broken)
-IFS=':' read -ra Date_Broken <<< "$Date"
-Date=$(Join "_" ${Date_Broken[@]})
+# printf "Done \n"
 
 
-for file in *.npz
-do
-    cd $SCRIPT_cwd
-    ## Moving the outputted .npz file to a seperate folder
-    ## Folder created is based on 
-    printf "Moving $file... \n"
+# ## Getting the exact date and time to create a parent directory
+# ## to store the outputs of both simulations
+# IFS='.' read -ra Date_Broken <<< "$(date)"
+# Date=$(Join "_" $Date_Broken)
+# IFS=':' read -ra Date_Broken <<< "$Date"
+# Date=$(Join "_" ${Date_Broken[@]})
 
-    ## breaking the file name to extract the piece before the .npz, 
-    ## as this is used to make specific output directories later on
-    IFS='.' read -ra File_Name_Full_BROKEN <<< "$file"
 
-    ## selecting what piece of the previously generated list to take as 
-    ## the directory name to make for this simulation
-    DIR_NAME_TO_MAKE=${File_Name_Full_BROKEN[0]}
+# for file in *.npz
+# do
+#     mkdir -p 
 
-    ## making the output directory and all the needed sub-directories
-    mkdir -p "$WHOLE_REPO_cwd/Outputted_Data/Simulation_$Date/$DIR_NAME_TO_MAKE/"{NPZ_File,Graphs,Dataframes,Animation}
+# done
 
-    ## moving the current file being analysed to the Outputted_Data directory,
-    ## as the data visualisation script is located there
-    mv $file "$WHOLE_REPO_cwd/Outputted_Data"
-
-    ## changing the working directory to this location
-    cd "$WHOLE_REPO_cwd/Outputted_Data"
-
-    ## telling the user what is happening
-    printf "Running data visualisation \n"
-
-    ## actually running the data visualisation through python3
-    python3 Data_Visualisation.py "$WHOLE_REPO_cwd/Outputted_Data" #2>/dev/null
-
-    ## telling the user what is happening
-    printf "Visualisation complete
-Moving files...\n"
-
-    ## moving the outputted files from this simulation
-    mv $file "Simulation_$Date/$DIR_NAME_TO_MAKE/NPZ_File"
-    mv Graph* "Simulation_$Date/$DIR_NAME_TO_MAKE/Graphs"
-    mv Percentages_For_* "Simulation_$Date/$DIR_NAME_TO_MAKE/Dataframes"
-    mv Animation* "Simulation_$Date/$DIR_NAME_TO_MAKE/Animation"
-done
-
-## telling the user that everything is finished
-printf "${Green}All done!"
-echo
+# ## telling the user that everything is finished
+# printf "${Green}All done!"
+# echo

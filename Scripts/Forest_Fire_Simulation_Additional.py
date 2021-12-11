@@ -4,11 +4,15 @@
 
 ## Importing required packages
 import numpy as np
-import random
-import sys
+import random, sys
 from datetime import datetime 
 
 
+#############################################################################################################################################################################################
+## for reference, these are the cell types:
+#0 = Empty cell
+#1 = Tree cell
+#2 = Fire cell
 #############################################################################################################################################################################################
 
 
@@ -48,6 +52,7 @@ def GETTNG_EMPTY_STORAGE_ARRAY(STEP_NUMBER, INITIAL_ARRAY):
 
 
 def RANDOM_GRID_GENERATION(N):
+
     """
     This function generates an array that is random filled with 0 and 1, thus has a random selection of cells that are either 0=Empty, or 1=Tree
 
@@ -64,6 +69,7 @@ def RANDOM_GRID_GENERATION(N):
         >[1,0
           0,1]
     """
+
     ## Generating an array full of 0s with rows N and columns N, with the datatype of 'uint8'
     Generated_Array = np.zeros((N, N), dtype="uint8")
 
@@ -84,6 +90,7 @@ def RANDOM_GRID_GENERATION(N):
 
 
 def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
+
     """
     This function generates the new row per time step, per sequence. Using a set of rules and random chances.
 
@@ -146,6 +153,7 @@ def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
         ## and setting it to "E" for empty.
         ## Now added the chance of rain, thus making a 2 -> 1
         ## I.E fire to tree
+        ## this has a 1 in 4 chance
         if Actual_Cell_Type == 2:
             Chance_Rain = random.randint(1,4)
             if Chance_Rain == 1:
@@ -156,7 +164,7 @@ def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
 
 
         ## Next seeing if the cell is a tree
-        ## Giving there a 1 in 5 chance of a Lightening (thus becoming a fire cell)
+        ## Giving there a 1 in 6 chance of a Lightening (thus becoming a fire cell)
         elif Actual_Cell_Type == 1:
             Chance_Lightening = random.randint(1,6)
             if Cell_Above == 2 or Cell_Below == 2 or Cell_To_Left == 2 or Cell_To_Right == 2 or Chance_Lightening == 1:
@@ -171,7 +179,7 @@ def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
 
 
         ## Next seeing if the cell is empty
-        ## Giving there a 1 in 5 chance of a tree appearing
+        ## Giving there a 1 in 2 chance of a tree appearing
         elif Actual_Cell_Type == 0:
             Chance_Tree = random.randint(1,2)
             if Chance_Tree == 1:
@@ -186,35 +194,36 @@ def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
 
 #############################################################################################################################################################################################
 
-## CHANGE VARIABLE NAMES
 
-def GET_NEW_ROW(Previous_Forest,Previous_Forest_List_Rows,New_Forest_SINGLE):
+
+def GET_NEW_ROW(Previous_Forest_GNR,Previous_Forest_List_Rows_GNR,New_Forest_SINGLE_GNR):
+
     """
     This function gets the row being analysed, passes it to GET_NEW_CHAR and returns the new row.
 
     Args:
-        Previous_Forest: The whole array of rows for the previous time step.
-        Previous_Forest_List_Rows: The rows from the previous time step.
-        New_Forest_SINGLE: An empty array that gets filled with  the new rows
+        Previous_Forest_GNR: The whole array of rows for the previous time step.
+        Previous_Forest_List_Rows_GNR: The rows from the previous time step.
+        New_Forest_SINGLE_GNR: An empty array that gets filled with  the new rows
         
 
     Returns:
-        New_Forest_SINGLE: The newly generated array, with new rows.
+        New_Forest_SINGLE_GNR: The newly generated array, with new rows.
 
     Examples:
-        >>> New_Forest_SINGLE:[[]
+        >>> New_Forest_SINGLE_GNR:[[]
                                []]
-        Previous_Forest_List_Rows: [[1,0]
-                                    [1,2]]
-        Previous_Forest_List_Rows: [[1,0],[2,1]]
+            Previous_Forest_GNR: [[1,0]
+                                  [1,2]]
+            Previous_Forest_List_Rows_GNR: [[1,0],[2,1]]
 
-            
+        
         >[1,1
           2,0]
     """
 
     ## Iterating over every row in the Previous_Forest_List_Rows value
-    for Row_Number in range(len(Previous_Forest_List_Rows)):
+    for Row_Number in range(len(Previous_Forest_List_Rows_GNR)):
 
 
         ## Getting the index position of the above row
@@ -222,22 +231,22 @@ def GET_NEW_ROW(Previous_Forest,Previous_Forest_List_Rows,New_Forest_SINGLE):
         Row_Above_Index = Row_Number - 1
 
         if Row_Above_Index < 0:
-            Row_Above = Previous_Forest[Row_Number]
+            Row_Above = Previous_Forest_GNR[Row_Number]
         else:
-            Row_Above = Previous_Forest[Row_Above_Index]
+            Row_Above = Previous_Forest_GNR[Row_Above_Index]
 
 
         ## Getting the index position of the Below row
         ## Also checking this to see if this exceeds the length
         Row_Below_Index = Row_Number + 1
-        if Row_Below_Index > len(Previous_Forest_List_Rows)-1:
-            Row_Below = Previous_Forest[Row_Number]
+        if Row_Below_Index > len(Previous_Forest_List_Rows_GNR)-1:
+            Row_Below = Previous_Forest_GNR[Row_Number]
         else:
-            Row_Below = Previous_Forest[Row_Below_Index]
+            Row_Below = Previous_Forest_GNR[Row_Below_Index]
 
 
         ## Getting the actual row
-        Actual_Row =  Previous_Forest[Row_Number]
+        Actual_Row =  Previous_Forest_GNR[Row_Number]
 
         ## MAYBE SEE IF WE CAN REMOVE THE NEED FOR STORAGE VALUES
 
@@ -248,22 +257,47 @@ def GET_NEW_ROW(Previous_Forest,Previous_Forest_List_Rows,New_Forest_SINGLE):
 
         New_Row = GET_NEW_CHAR(Actual_Row_As_List,Actual_Row_Above_As_List,Actual_Row_Below_As_List)
 
-        New_Forest_SINGLE[Row_Number] = New_Row
+        New_Forest_SINGLE_GNR[Row_Number] = New_Row
 
-    return New_Forest_SINGLE
+    return New_Forest_SINGLE_GNR
 
 
 #############################################################################################################################################################################################
 
 
-def UPDATE_CELL_TYPE(Previous_Forest):
+def UPDATE_CELL_TYPE(Previous_Forest_UCT):
+
+    """
+    This function generates a new and empty array of zeros, andthen  uses a list comprehension to get the rows of the 
+    last time step. These variables and the original time step as an array are then passed to the GET_NEW_ROW function, 
+    which then returns the new row for this time step. 
+
+    Args:
+        Previous_Forest_UCT: The whole array of rows for the previous time step.
+        
+
+    Returns:
+        New_Forest_SINGLE: The newly generated array, with new rows.
+
+    Examples:
+        >>> New_Forest_SINGLE:[[]
+                               []]
+            Previous_Forest_List_Rows: [[1,0]
+                                    [1,2]]
+            Previous_Forest_List_Rows: [[1,0],[2,1]]
+
+            
+        >[1,1
+          2,0]
+    """
+
     ## Making an empty array to store the new array
-    New_Forest_SINGLE = np.empty_like(Previous_Forest)
+    New_Forest_SINGLE = np.empty_like(Previous_Forest_UCT)
 
     ## Making the previous array into a list of rows
-    Previous_Forest_List_Rows = [Row for Row in Previous_Forest]
+    Previous_Forest_List_Rows = [Row for Row in Previous_Forest_UCT]
 
-    GET_NEW_ROW(Previous_Forest,Previous_Forest_List_Rows,New_Forest_SINGLE)
+    GET_NEW_ROW(Previous_Forest_UCT,Previous_Forest_List_Rows,New_Forest_SINGLE)
 
     return New_Forest_SINGLE
 
@@ -272,12 +306,31 @@ def UPDATE_CELL_TYPE(Previous_Forest):
 
 
 def SIMULATE_FIRE(New_Forest, Step_Amount):
+
+    """
+    This function begins the whole simulation
+    Args:
+        New_Forest: The whole array that the simulation will be run on
+        Step_Amount: The amount of time steps tom perform
+        
+
+    Returns:
+        New_Forest_SINGLE: The newly generated array, with new rows.
+
+    Examples:
+        >>> Too big to show
+            
+        > Too big to show
+
+    """
+
     for Iteration in range(1, Step_Amount):
         New_Forest[Iteration] = UPDATE_CELL_TYPE(New_Forest[Iteration-1])
     return New_Forest
 
 
 #############################################################################################################################################################################################
+
 ## Taking command line arguments for the array dimensions
 ## and the number of steps to perform
 Command_Line_Arguments = sys.argv[1:]
@@ -298,16 +351,14 @@ Empty_Array_List = GETTNG_EMPTY_STORAGE_ARRAY(STEP_NUMBER=NUMBER_OF_STEPS, INITI
 
 
 
-
+## Getting the exact date and time, so each simulation can be time-stamped
 Current_Time = datetime.now()
-Date = Current_Time.strftime("%d_%m_%Y__%H_%M_%S")
-New_Forest_Simulated = SIMULATE_FIRE(Empty_Array_List, NUMBER_OF_STEPS)
-np.savez_compressed(f"New_Forest_Simulation_With_Rain", state=New_Forest_Simulated)
 
-# for I in range(len(New_Forest_Simulated)):
-#     print(" ")
-#     print(New_Forest_Simulated[I])
-#     print(" ")
-#0 = E
-#1 = T
-#2 = F
+## setting the date format
+Date = Current_Time.strftime("%d_%m_%Y__%H_%M_%S")
+
+## actually running the simulation
+New_Forest_Simulated = SIMULATE_FIRE(Empty_Array_List, NUMBER_OF_STEPS)
+
+## saving out the simulation
+np.savez_compressed(f"New_Forest_Simulation_With_Rain", state=New_Forest_Simulated)

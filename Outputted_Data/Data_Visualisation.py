@@ -2,6 +2,7 @@
 
 import numpy as np
 import os
+import sys
 import pandas as pd
 import matplotlib.pyplot as plt
 import sys
@@ -10,9 +11,9 @@ from matplotlib.animation import FuncAnimation
 import matplotlib.animation as animation
 
 
-
 Command_Line_Arguments = sys.argv[1:]
 File_Name = str(Command_Line_Arguments[0])
+
 
 # Setting current working directory to script location
 CurrentDirectory = os.path.dirname(__file__)
@@ -38,7 +39,6 @@ for Simulation in New_Forest_Sim:
 Simulation_Number = [num for num in range(len(New_Forest_Sim))]
 
 
-
 Total_Cells_Per_Simulation = [len(New_Forest_Sim[0])*len(New_Forest_Sim[0]) for Simulation in Simulation_Number]
 
 Empty_Cells_Log_Percentage = [(Result) for Result in map(lambda Total_Cell_List, Cell_List_In_Question: (Cell_List_In_Question/Total_Cell_List)*100,Total_Cells_Per_Simulation,Empty_Cells_Log)]
@@ -54,7 +54,7 @@ Simulation_And_Percentage_Per_Variable_Dataframe = pd.DataFrame({'Simulation Num
 
  
 OrignalFileName = New_Forest_Simulation.split(".")[0]
-Simulation_And_Percentage_Per_Variable_Dataframe.to_csv(f"Percentages_For_{OrignalFileName}.csv",index=False)
+Simulation_And_Percentage_Per_Variable_Dataframe.to_csv("Percentages_For_Simulation.csv",index=False, sep='\t', encoding='utf-16')
 
 plt.figure(facecolor='grey')
 ax = plt.axes()
@@ -76,23 +76,7 @@ plt.savefig(f'Graph_Of_Percentages_{OrignalFileName}', dpi=1200,bbox_inches="tig
 
 
 
-#####################
-# import numpy as np
-# import os
-# import pandas as pd
-# import matplotlib.pyplot as plt
-# import sys
-# from matplotlib.colors import ListedColormap
-# from matplotlib.animation import FuncAnimation
-# from IPython.display import HTML
-# import matplotlib.animation as animation
 
-for file in os.listdir():
-    if file.endswith("npz"):
-        New_Forest_Simulation = file
-
-with np.load(New_Forest_Simulation) as Forest_Sim:
-    New_Forest_Sim = Forest_Sim["state"]
 
 # Set up the initial figure and axes
 fig, ax = plt.subplots(constrained_layout=True)
