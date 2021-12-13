@@ -1,0 +1,9 @@
+This simulation was run with the following parameters:
+Array 50*50
+Time steps = 1000
+
+Chance of rain is 1 in 4
+
+Chance of Lightening is 1 in 2
+
+Chance of a Tree randomly appearing is 1 in 2
