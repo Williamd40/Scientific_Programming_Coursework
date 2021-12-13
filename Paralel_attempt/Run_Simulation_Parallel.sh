@@ -81,8 +81,10 @@ Join() {
   shift
   echo "$*"
 }
+SCRIPT_cwd="$(pwd)"
+export PRINT=$SCRIPT_cwd/PRINT.py
 
-
+python3 $PRINT
 
 ## Saving the various directory paths for later reference
 SCRIPT_cwd="$(pwd)"
@@ -90,11 +92,11 @@ cd ..
 WHOLE_REPO_cwd="$(pwd)"
 
 ## sets the cd to the working directory of the bash script
-cd $SCRIPT_cwd
+# cd $SCRIPT_cwd
 
-Data_Analysis=$SCRIPT_cwd/Data_Visualisation.py
+# Data_Analysis=$SCRIPT_cwd/Data_Visualisation.py
 
-echo $Data_Analysis
+# echo $Data_Analysis
 
 # ## Taking the array size and amount of steps from the cmd line
 # ARRAY_SIZE=$1
