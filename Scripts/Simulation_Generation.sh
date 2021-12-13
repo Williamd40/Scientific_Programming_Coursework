@@ -86,6 +86,7 @@ Join() {
 
 ## Saving the various directory paths for later reference
 SCRIPT_cwd="$(pwd)"
+export Data_Visualisation=$SCRIPT_cwd/Data_Visualisation.py
 cd ..
 WHOLE_REPO_cwd="$(pwd)"
 
@@ -165,7 +166,7 @@ do
     printf "Running data visualisation \n"
 
     ## actually running the data visualisation through python3
-    python3 Data_Visualisation.py "$WHOLE_REPO_cwd/Outputted_Data" #2>/dev/null
+    python3 $Data_Visualisation "$WHOLE_REPO_cwd/Outputted_Data" #2>/dev/null
 
     ## telling the user what is happening
     printf "Visualisation complete
