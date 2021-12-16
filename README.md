@@ -6,7 +6,7 @@
 
 
 >_All code written here is my own work_
->_By <b>William D'Alessandro<b>_
+<br> >_By William D'Alessandro_
 
 ---
 
