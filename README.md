@@ -16,7 +16,7 @@
 
 
 
-To run this code, simply set your working directory to '~\Scientific_Programming_Coursework\Scripts'. <br>
+To run this code, simply set your working directory to `~\Scientific_Programming_Coursework\Scripts`. <br>
 Next, using Ubuntu, turn your terminal to one which can interpret BASH scripts, this is often done by simply typing BASH into the cmd terminal itself.
 You will then see green and blue text, in place of the white text. You may be missing some of the required packages, to install them simply follow the on screen sudo commands, as BASH will tell you the prompts to install these.
 
@@ -44,7 +44,7 @@ This project is designed to be as user-friendly as possible, and as such a singl
 
 
 
-Now to actually run these simulation, you have two optional parameters. These specify, in order, the array size, and the amount of time steps. These are specified after the command to run the simulations, as such:<br>bash Simulation_Generation.sh 'Array Size' 'Time Steps'<br>Please note, you will not type Array Size or Time Steps, simply enter numerical values. For example, `bash Simulation_Generation.sh 100 2000` will make an array with the dimensions 100\*100, ands then perform 2000 time steps. However, if you choose to not enter values, the project will default to an array of 50\*50, and 1000 time steps.
+Now to actually run these simulation, you have two optional parameters. These specify, in order, the array size, and the amount of time steps. These are specified after the command to run the simulations, as such:<br>`bash Simulation_Generation.sh 'Array Size' 'Time Steps'`<br>Please note, you will not type Array Size or Time Steps, simply enter numerical values. For example, `bash Simulation_Generation.sh 100 2000` will make an array with the dimensions 100\*100, ands then perform 2000 time steps. However, if you choose to not enter values, the project will default to an array of 50\*50, and 1000 time steps.
 
 
 
