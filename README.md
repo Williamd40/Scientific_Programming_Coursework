@@ -1,4 +1,3 @@
-<DOCTYPE html>
 <p align=centre>
   <img src = "README_Media/Overall_Burning_Tree.png" width="500">
 </p>
@@ -58,7 +57,7 @@ Running the simulation
 
 </dl>
 
-Now to actually run these simulation, you have two optional parameters. These specify, in order, the array size, and the amount oif time steps. These are specified after the command to run the simulations, as such:<br><strong>bash Simulation_Generation.sh 'Array Size' 'Time Steps'</strong><br>Please note, you will not type Array Size or Time Steps, simply enter numerical values. For example, <strong>bash Simulation_Generation.sh 100 2000</strong> will make an array with the dimensions 100*100, ands then perform 2000 time steps. However, if you choose to not enter values, the project will default to an array of 50*50, and 1000 time steps.
+Now to actually run these simulation, you have two optional parameters. These specify, in order, the array size, and the amount oif time steps. These are specified after the command to run the simulations, as such:<br><strong>bash Simulation_Generation.sh 'Array Size' 'Time Steps'</strong><br>Please note, you will not type Array Size or Time Steps, simply enter numerical values. For example, <strong>bash Simulation_Generation.sh 100 2000</strong> will make an array with the dimensions 100\*100, ands then perform 2000 time steps. However, if you choose to not enter values, the project will default to an array of 50\*50, and 1000 time steps.
 </p2>
 
 
