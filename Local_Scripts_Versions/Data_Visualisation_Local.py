@@ -11,12 +11,12 @@ from matplotlib.animation import FuncAnimation
 import matplotlib.animation as animation
 
 
-Command_Line_Arguments = sys.argv[1:]
-File_Name = str(Command_Line_Arguments[0])
+# Setting current working directory to script location
+CurrentDirectory = os.path.dirname(__file__)
 
 
-os.chdir(File_Name)
-for file in os.listdir(File_Name):
+os.chdir(CurrentDirectory)
+for file in os.listdir():
     if file.endswith("npz"):
         New_Forest_Simulation = file
 
@@ -27,7 +27,6 @@ with np.load(New_Forest_Simulation) as Forest_Sim:
 Trees_On_Fire_Log=[]
 Trees_Log=[]
 Empty_Cells_Log=[]
-
 
 for Simulation in New_Forest_Sim:
     Empty_Cells_Log.append(np.count_nonzero(Simulation == 0))
@@ -79,7 +78,7 @@ plt.savefig(f'Graph_Of_Percentages_{OrignalFileName}', dpi=1200,bbox_inches="tig
 # Set up the initial figure and axes
 fig, ax = plt.subplots(constrained_layout=True)
 ax.axis("off")
-cmap = ListedColormap(["#964B00", "#006400","#FF0000"])
+cmap = ListedColormap(["#964B00", "#FF0000","#006400"])
 # Plot the initial grid
 array_plot = ax.imshow(
     New_Forest_Sim[0],  # Make our data 2-D

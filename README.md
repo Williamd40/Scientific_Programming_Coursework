@@ -48,3 +48,9 @@ Now to actually run these simulation, you have two optional parameters. These sp
 
 
 
+
+### **Running the simulation without BASH**
+
+If you wish to run these simulations without the need of BASH, then do as follows: <br>
+
+Open up the chosen simulation .py script from with the directory `Local_Scripts_Versions`, and then run it. You will be prompted for array size and number of time steps. Next you need to open the .py script titled `Data_Visualisation_Local.py` and run this. This will generate the graph, dataframe, and animation for the previously run simulation. **Please note, you need to remove all the outputted files manually if you wish to run this again.**
