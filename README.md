@@ -2,7 +2,7 @@
   <img src = "README_Media/Overall_Burning_Tree.png" width="500">
 </p>
 
-# Scientific Programming Forest Fire Simulation Coursework 2021
+# **Scientific Programming Forest Fire Simulation Coursework 2021**
 
 
 >_All code written here is my own work_
@@ -10,9 +10,9 @@
 
 ---
 
-## <b>How to run this project</b>
+## **How to run this project**
 
-### <b>Setting up</b>
+### **Setting up**
 
 
 
@@ -22,7 +22,7 @@ You will then see green and blue text, in place of the white text. You may be mi
 
 
 
-### <b>Running the simulation</b>
+### **Running the simulation**
 
 
 
@@ -30,21 +30,21 @@ This project is designed to be as user-friendly as possible, and as such a singl
 
 
 
-* <b>Animation</b><br>
+* **Animation**<br>
         The animation of this simulation.
 
-* <b>Dataframes</b><br>
+* **Dataframes**<br>
      A .csv file containing the percentages of each cell type at each time step
 
-* <b>Graphs</b><br>
+* **Graphs**<br>
       The graph plotted for the simulation
 
-* <b>NPZ_File</b><br>
+* **NPZ_File**<br>
       The dataframe in a .npz format
 
 
 
-Now to actually run these simulation, you have two optional parameters. These specify, in order, the array size, and the amount of time steps. These are specified after the command to run the simulations, as such:<br><b>bash Simulation_Generation.sh 'Array Size' 'Time Steps'</b><br>Please note, you will not type Array Size or Time Steps, simply enter numerical values. For example, <b>bash Simulation_Generation.sh 100 2000</b> will make an array with the dimensions 100\*100, ands then perform 2000 time steps. However, if you choose to not enter values, the project will default to an array of 50\*50, and 1000 time steps.
+Now to actually run these simulation, you have two optional parameters. These specify, in order, the array size, and the amount of time steps. These are specified after the command to run the simulations, as such:<br>bash Simulation_Generation.sh 'Array Size' 'Time Steps'<br>Please note, you will not type Array Size or Time Steps, simply enter numerical values. For example, `bash Simulation_Generation.sh 100 2000` will make an array with the dimensions 100\*100, ands then perform 2000 time steps. However, if you choose to not enter values, the project will default to an array of 50\*50, and 1000 time steps.
 
 
 
