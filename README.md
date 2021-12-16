@@ -1,5 +1,5 @@
 
-<p align=right>
+<p align=centre>
   <img src = "README_Media/Overall_Burning_Tree.png" width="500">
 </p>
 <head>
