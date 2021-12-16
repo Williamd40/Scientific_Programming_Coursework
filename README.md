@@ -44,16 +44,21 @@ Running the simulation
     This project is designed to be as user-friendly as possible, and as such
     a single BASH command will not only run both simulations together, but will also carry out all the data analysis. The outputted files will then be time stamped and stored in a specific output folder. You will get one output directory per full run through, containing one sub-directory per simulation. Each of these sub-directories will then contain four output folders. The output folders are as follows:
 <dl>
-    <dt>F1`</dt>
-    <dd>EWRR</dd>
+<dt>Animation</dt>
+<dd>The animation of this simulation.</dd>
 
-    <dt>F2</dt>
-    <dd>F1222</dd>
+<dt>Dataframes</dt>
+<dd>A .csv file containing the percentages of each cell type at each time step</dd>
 
-    <dt>F333</dt>
-    <dd> DDSF</dd>
+<dt>Graphs</dt>
+<dd>The graph plotted for the simulation</dd>
+
+<dt>NPZ_File</dt>
+<dd>The dataframe in a .npz format</dd>
 
 </dl>
+
+Now to actually run these simulation, you have two optional parameters. These specify, in order, the array size, and the amount oif time steps. These are specified after the command to run the simulations, as such:<br><strong>bash Simulation_Generation.sh 'Array Size' 'Time Steps'</strong><br>Please note, you will not type Array Size or Time Steps, simply enter numerical values. For example, <strong>bash Simulation_Generation.sh 100 2000</strong> will make an array with the dimensions 100*100, ands then perform 2000 time steps. However, if you choose to not enter values, the project will default to an array of 50*50, and 1000 time steps.
 </p2>
 
 
