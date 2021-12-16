@@ -16,9 +16,10 @@
  Scientific Programming Forest Fire Simulation Coursework 2021
 </h1>
 <i>
-<p1  text-indent: 50px; color: "grey";>
+<p1> <font text-indent: 50px; color: "grey";>
 All code written here is my own work
 <br>By <b>William D'Alessandro<b></i>
+</font>
 </p1>
 <hr>
 
