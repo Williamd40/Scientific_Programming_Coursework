@@ -1,4 +1,4 @@
-<p align=centre>
+<p align=center>
   <img src = "README_Media/Overall_Burning_Tree.png" width="500">
 </p>
 
@@ -14,7 +14,7 @@
 
 ### Setting up
 
---
+
 
 To run this code, simply set your working directory to '~\Scientific_Programming_Coursework\Scripts'. <br>
 Next, using Ubuntu, turn your terminal to one which can interpret BASH scripts, this is often done by simply typing BASH into the cmd terminal itself.
@@ -24,25 +24,23 @@ You will then see green and blue text, in place of the white text. You may be mi
 
 ### Running the simulation
 
---
 
-This proj
-ect is designed to be as user-friendly as possible, and as such
-a single BASH command will not only run both simulations together, but will also carry out all the data analysis. The outputted files will then be time stamped and stored in a specific output folder. You will get one output directory per full run through, containing one sub-directory per simulation. Each of these sub-directories will then contain four output folders. The output folders are as follows:
+
+This project is designed to be as user-friendly as possible, and as such a single BASH command will not only run both simulations together, but will also carry out all the data analysis. The outputted files will then be time stamped and stored in a specific output folder. You will get one output directory per full run through, containing one sub-directory per simulation. Each of these sub-directories will then contain four output folders. The output folders are as follows:
 
 
 
 * Animation<br>
-    The animation of this simulation.
+        The animation of this simulation.
 
 * Dataframes<br>
-    A .csv file containing the percentages of each cell type at each time step
+     A .csv file containing the percentages of each cell type at each time step
 
 * Graphs<br>
-    The graph plotted for the simulation
+      The graph plotted for the simulation
 
 * NPZ_File<br>
-    The dataframe in a .npz format
+      The dataframe in a .npz format
 
 
 
