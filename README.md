@@ -10,9 +10,9 @@
 
 ---
 
-## How to run this project
+## <b>How to run this project</b>
 
-### Setting up
+### <b>Setting up</b>
 
 
 
@@ -22,7 +22,7 @@ You will then see green and blue text, in place of the white text. You may be mi
 
 
 
-### Running the simulation
+### <b>Running the simulation</b>
 
 
 
@@ -30,16 +30,16 @@ This project is designed to be as user-friendly as possible, and as such a singl
 
 
 
-* Animation<br>
+* <b>Animation</b><br>
         The animation of this simulation.
 
-* Dataframes<br>
+* <b>Dataframes</b><br>
      A .csv file containing the percentages of each cell type at each time step
 
-* Graphs<br>
+* <b>Graphs</b><br>
       The graph plotted for the simulation
 
-* NPZ_File<br>
+* <b>NPZ_File</b><br>
       The dataframe in a .npz format
 
 
