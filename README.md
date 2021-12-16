@@ -16,9 +16,9 @@
  Scientific Programming Forest Fire Simulation Coursework 2021
 </h1>
 <i>
-<p1  text-indent: 50px;>
->_All code written here is my own work_
-><br>y <b>William D'Alessandro<b></i>
+<p1  text-indent: 50px; color: grey;>
+All code written here is my own work
+<br>By <b>William D'Alessandro<b></i>
 </p1>
 <hr>
 
