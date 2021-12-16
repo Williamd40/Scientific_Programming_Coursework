@@ -5,8 +5,8 @@
 # **Scientific Programming Forest Fire Simulation Coursework 2021**
 
 
->_All code written here is my own work_
-<br> >_By William D'Alessandro_
+>_All code written here is my own work
+<br> By William D'Alessandro_
 
 ---
 
