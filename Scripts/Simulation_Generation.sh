@@ -69,6 +69,7 @@ Then, within each of these directories, a further four directories will be found
 Please note: two simulations run with the same array size, and step number will never be the same
 This simulation randomly generates the initial array, and then further random factors will influence the 
 outcome of each time step. In theory, two simulations will therefore never be the same!
+
 ${No_Colour}"                                                                                                                                                                                                                                                                                                                                                        
                                                                                                                                                                                                                                                                                                                                                                    
                                                                                                                                                                                                                                                                                                                                                                    

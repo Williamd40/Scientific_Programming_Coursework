@@ -151,7 +151,7 @@ def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
         ## I.E fire to tree
         ## this has a 1 in 4 chance
         if Actual_Cell_Type == 2:
-            Chance_Rain = random.randint(1,4)
+            Chance_Rain = random.randint(1,50)
             if Chance_Rain == 1:
                 New_Row[Actual_Cell_Index] = 1
             else:
@@ -162,7 +162,7 @@ def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
         ## Next seeing if the cell is a tree
         ## Giving there a 1 in 6 chance of a Lightening (thus becoming a fire cell)
         elif Actual_Cell_Type == 1:
-            Chance_Lightening = random.randint(1,6)
+            Chance_Lightening = random.randint(1,100)
             if Cell_Above == 2 or Cell_Below == 2 or Cell_To_Left == 2 or Cell_To_Right == 2 or Chance_Lightening == 1:
                 New_Row[Actual_Cell_Index] = 2
             else:
@@ -177,7 +177,7 @@ def GET_NEW_CHAR(Row_To_Analyse,Row_Above_List,Row_Below_List):
         ## Next seeing if the cell is empty
         ## Giving there a 1 in 2 chance of a tree appearing
         elif Actual_Cell_Type == 0:
-            Chance_Tree = random.randint(1,2)
+            Chance_Tree = random.randint(1,30)
             if Chance_Tree == 1:
                 New_Row[Actual_Cell_Index] = 1
             else:
