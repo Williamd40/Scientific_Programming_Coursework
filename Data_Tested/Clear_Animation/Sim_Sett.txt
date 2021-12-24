@@ -1,0 +1,5 @@
+Chance_Tree = random.randint(1,5)
+Chance_Lightening = random.randint(1,75)
+Chance_Rain = random.randint(1,25)
+
+This was run to showcase the simulation in a clearer way.

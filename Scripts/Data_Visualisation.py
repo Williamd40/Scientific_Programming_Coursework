@@ -79,7 +79,7 @@ plt.savefig(f'Graph_Of_Percentages_{OrignalFileName}', dpi=1200,bbox_inches="tig
 # Set up the initial figure and axes
 fig, ax = plt.subplots(constrained_layout=True)
 ax.axis("off")
-cmap = ListedColormap(["#964B00", "#FF0000","#006400"])
+cmap = ListedColormap(["#964B00", "#FF0000","#FF0000"])
 # Plot the initial grid
 array_plot = ax.imshow(
     New_Forest_Sim[0],  # Make our data 2-D
