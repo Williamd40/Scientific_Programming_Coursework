@@ -48,6 +48,16 @@ Simulation_Number = [num for num in range(len(New_Forest_Sim))]
         
 Total_Cells_Per_Simulation = [len(New_Forest_Sim[0])*len(New_Forest_Sim[0]) for Simulation in Simulation_Number]
 
+## These lambdas work by mapping their specified function to the list of cells in question, then the result is returned through a list comprehension.
+## To explain, in the first example:
+## (Result) for Result in map(~ is responsible for returning every result from the lambda mapping
+
+## lambda Total_Cell_List, Cell_List_In_Question: (Cell_List_In_Question/Total_Cell_List)*100 
+## This part creates a lambda function that is mapped over the inputs of:
+## Total_Cells_Per_Simulation,Empty_Cells_Log
+
+## The final result is then stored in Empty_Cells_Log_Percentage
+
 Empty_Cells_Log_Percentage = [(Result) for Result in map(lambda Total_Cell_List, Cell_List_In_Question: (Cell_List_In_Question/Total_Cell_List)*100,Total_Cells_Per_Simulation,Empty_Cells_Log)]
 
 Trees_Log_Percentage = [(Result) for Result in map(lambda Total_Cell_List, Cell_List_In_Question: (Cell_List_In_Question/Total_Cell_List)*100,Total_Cells_Per_Simulation,Trees_Log)]
