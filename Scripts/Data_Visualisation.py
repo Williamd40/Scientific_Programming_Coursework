@@ -41,7 +41,7 @@ for Simulation in New_Forest_Sim:
 Simulation_Number = [num for num in range(len(New_Forest_Sim))]
 
 ## Further list comprehensions to  get the total cells and total of each cell types at each time point.
-## This is achieved through maping a lambda function to each cell type list, then using a list comprehension to return the results
+## This is achieved through mapping a lambda function to each cell type list, then using a list comprehension to return the results
 ## Please note, I originally had this running in parallel using `concurrent.futures.ProcessPoolExecutor()`
 ## However, I found this to work at more or less the same speed as the single core variant, so decided to stay with the single core variant
 ## due to ease of debugging.
