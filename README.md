@@ -18,7 +18,7 @@
 
 To run this code, simply set your working directory to `~\Scientific_Programming_Coursework\Scripts`. <br>
 Next, using Ubuntu, turn your terminal to one which can interpret BASH scripts, this is often done by simply typing BASH into the cmd terminal itself.
-You will then see green and blue text, in place of the white text. You may be missing some of the required packages, to install them simply follow the on screen sudo commands, as BASH will tell you the prompts to install these.
+You will then see green and blue text, in place of the white text. You may be missing some of the required packages, to install them simply follow the on screen sudo commands, as BASH will tell you the prompts to install these. If not, then simply google how to instal them into your chosen environment.
 
 
 
