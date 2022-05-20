@@ -82,7 +82,7 @@ def RANDOM_GRID_GENERATION(N):
             ## Making the individual array entry be either a 0 or a 1 randomly 
             Generated_Array[i][j] = random.choice([0,1],)
 
-    ## Returning the ranomdly generated array
+    ## Returning the randomly generated array
     return Generated_Array
 
 
@@ -268,7 +268,7 @@ def GET_NEW_ROW(Previous_Forest_GNR,Previous_Forest_List_Rows_GNR,New_Forest_SIN
 def UPDATE_CELL_TYPE(Previous_Forest_UCT):
 
     """
-    This function generates a new and empty array of zeros, andthen  uses a list comprehension to get the rows of the 
+    This function generates a new and empty array of zeros, and then  uses a list comprehension to get the rows of the 
     last time step. These variables and the original time step as an array are then passed to the GET_NEW_ROW function, 
     which then returns the new row for this time step. 
 
